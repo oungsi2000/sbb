@@ -15,16 +15,11 @@ public class BaseInitData {
     @Bean
     public ApplicationRunner baseInitDataApplicationRunner() {
         return args -> {
-            if ( postService.count() > 0 ) return;
+            if (postService.count() > 0) return;
 
             Post post1 = postService.write("title1", "content1");
-            System.out.println(post1.getId() + "번 글이 생성됨");
-
             Post post2 = postService.write("title2", "content2");
-            System.out.println(post2.getId() + "번 글이 생성됨");
-
             Post post3 = postService.write("title3", "content3");
-            System.out.println(post3.getId() + "번 글이 생성됨");
         };
     }
 }
