@@ -31,7 +31,7 @@ public class BaseInitData {
     @Order(2)
     public ApplicationRunner baseInitData2ApplicationRunner() {
         return args -> {
-            System.out.println("baseInitData2ApplicationRunner");
+            Post post1 = postService.findById(1).get();
         };
     }
 }
