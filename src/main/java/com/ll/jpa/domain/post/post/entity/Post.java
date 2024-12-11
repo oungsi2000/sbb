@@ -4,17 +4,18 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
+@Getter
+@Setter
 public class Post {
-    // long => null 안됨
-    // Long => null 가능
-    // Jpa 엔티티 클래스 특성상 id 필드는 null 이 가능하도록
-    @Id // PRIMARY KEY
+    @Id
     @GeneratedValue(strategy = IDENTITY) // AUTO_INCREMENT
     private Long id;
     private LocalDateTime createdAt;
