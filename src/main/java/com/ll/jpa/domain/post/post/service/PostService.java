@@ -14,14 +14,13 @@ public class PostService {
     private final PostRepository postRepository;
 
     public Post write(String title, String content) {
-        Post post = new Post(
-                null,
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                title,
-                content,
-                false
-        );
+        Post post = Post
+                .builder()
+                .createdAt(LocalDateTime.now())
+                .modifiedAt(LocalDateTime.now())
+                .title(title)
+                .content(content)
+                .build();
 
         postRepository.save(post);
 
