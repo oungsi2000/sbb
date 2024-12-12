@@ -1,4 +1,4 @@
-package com.ll.jpa.domain.post.post.entity;
+package com.ll.jpa.domain.post.comment.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-
 @Entity
 @Getter
 @Setter
@@ -18,7 +17,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class Post {
+public class PostComment {
     @Id
     @GeneratedValue(strategy = IDENTITY) // AUTO_INCREMENT
     @Setter(AccessLevel.PRIVATE)
@@ -32,8 +31,7 @@ public class Post {
     @Setter(AccessLevel.PRIVATE)
     private LocalDateTime modifiedAt;
 
-    @Column(length = 100)
-    private String title;
+    private long postId;
 
     @Column(columnDefinition = "TEXT")
     private String content;
