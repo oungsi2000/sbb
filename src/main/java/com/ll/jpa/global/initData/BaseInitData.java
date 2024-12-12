@@ -5,10 +5,12 @@ import com.ll.jpa.domain.post.comment.service.PostCommentService;
 import com.ll.jpa.domain.post.post.entity.Post;
 import com.ll.jpa.domain.post.post.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 @Configuration
 @RequiredArgsConstructor
@@ -41,28 +43,28 @@ public class BaseInitData {
     @Bean
     @Order(2)
     public ApplicationRunner baseInitData2ApplicationRunner() {
-        return args -> {
-            PostComment postComment3 = postCommentService.findById(3).get();
-            /*
-            SELECT PC.id,
-            PC.blind,
-            PC.content,
-            PC.created_at,
-            PC.modified_at,
-            P.id,
-            P.blind,
-            P.content,
-            P.created_at,
-            P.modified_at,
-            P.title
-            FROM post_comment AS PC
-            LEFT JOIN
-            post AS P
-            ON P.id = PC.post_id
-            WHERE PC.id = 3
-            */
+        return new ApplicationRunner() {
+            @Transactional
+            @Override
+            public void run(ApplicationArguments args) throws Exception {
+                PostComment postComment3 = postCommentService.findById(3).get();
+                /*
+                SELECT PC.*
+                FROM post_comment AS PC
+                WHERE PC.id = 3
+                */
 
-            Post postOfComment3 = postComment3.getPost();
+                Post postOfComment3 = postComment3.getPost();
+                System.out.println("postOfComment3.id = " + postOfComment3.getId());
+                System.out.println("postOfComment3.title = " + postOfComment3.getTitle());
+                /*
+                SELECT P.*
+                FROM post AS P
+                WHERE P.id = 2
+                */
+
+                System.out.println("postOfComment3.content = " + postOfComment3.getContent());
+            }
         };
     }
 }
