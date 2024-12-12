@@ -25,12 +25,14 @@ public class BaseInitData {
             Post post3 = postService.write("title3", "content3");
 
             // 1번글에 대한 댓글 1 생성
-            PostComment postComment1 = postCommentService.write(post1.getId(), "comment1");
+            PostComment postComment1 = postCommentService.write(post1, "comment1");
             // 1번글에 대한 댓글 2 생성
-            PostComment postComment2 = postCommentService.write(post1.getId(), "comment2");
+            PostComment postComment2 = postCommentService.write(post1, "comment2");
 
             // 2번글에 대한 댓글 3 생성
-            PostComment postComment3 = postCommentService.write(post2.getId(), "comment3");
+            PostComment postComment3 = postCommentService.write(post2, "comment3");
+
+            Post postOfComment3 = postComment3.getPost();
         };
     }
 }
