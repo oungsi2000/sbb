@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 @Configuration
 @RequiredArgsConstructor
@@ -16,6 +17,7 @@ public class BaseInitData {
     private final PostCommentService postCommentService;
 
     @Bean
+    @Order(1)
     public ApplicationRunner baseInitData1ApplicationRunner() {
         return args -> {
             if (postService.count() > 0) return;
@@ -31,6 +33,34 @@ public class BaseInitData {
 
             // 2번글에 대한 댓글 3 생성
             PostComment postComment3 = postCommentService.write(post2, "comment3");
+
+            Post postOfComment3 = postComment3.getPost();
+        };
+    }
+
+    @Bean
+    @Order(2)
+    public ApplicationRunner baseInitData2ApplicationRunner() {
+        return args -> {
+            PostComment postComment3 = postCommentService.findById(3).get();
+            /*
+            SELECT PC.id,
+            PC.blind,
+            PC.content,
+            PC.created_at,
+            PC.modified_at,
+            P.id,
+            P.blind,
+            P.content,
+            P.created_at,
+            P.modified_at,
+            P.title
+            FROM post_comment AS PC
+            LEFT JOIN
+            post AS P
+            ON P.id = PC.post_id
+            WHERE PC.id = 3
+            */
 
             Post postOfComment3 = postComment3.getPost();
         };
