@@ -5,10 +5,10 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:mysql://localhost:3306/jpa
-    username: root
-    password: lldj123414
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:./db_dev;MODE=MySQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
   jpa:
     hibernate:
       ddl-auto: update
