@@ -89,4 +89,8 @@ public class PostService {
     public List<Post> findByAuthorNickname(String authorNickname) {
         return postRepository.findByAuthorNickname(authorNickname);
     }
+
+    public List<Post> findByCommentsAuthorNickname(String authorNickname) {
+        return postRepository.findByCommentsAuthorNickname(authorNickname);
+    }
 }
