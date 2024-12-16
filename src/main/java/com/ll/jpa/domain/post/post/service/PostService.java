@@ -85,4 +85,8 @@ public class PostService {
     public Page<Post> findByTitleLike(String title, Pageable pageable) {
         return postRepository.findByTitleLike(title, pageable);
     }
+
+    public List<Post> findByAuthorNickname(String authorNickname) {
+        return postRepository.findByAuthorNickname(authorNickname);
+    }
 }
