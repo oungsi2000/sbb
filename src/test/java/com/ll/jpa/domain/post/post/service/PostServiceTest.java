@@ -1,4 +1,4 @@
-package com.ll.jpa.domain.post.post.service;
+package java.com.ll.jpa.domain.post.post.service;
 
 import com.ll.jpa.domain.member.member.entity.Member;
 import com.ll.jpa.domain.member.member.service.MemberService;
